@@ -1,4 +1,4 @@
-const theme = {
+export const theme = {
   color: {
     darkBlue: '#2b3945',
     veryDarkBlue: '#202c37',

@@ -1,15 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import axios from 'axios'
+import { useEffect } from 'react'
+import Header from './components/Header'
+import { GlobalStyle } from './styles/globalStyles'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './constants/theme'
+import Home from './components/Home'
 
-function App() {
-  const [count, setCount] = useState(0)
+function App({countries, currentCountries}) {
 
   return (
-    <div>
-      
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle/>
+      <div>
+        <Home/>
+      </div>
+    </ThemeProvider>
   )
 }
 
