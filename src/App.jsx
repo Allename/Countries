@@ -1,10 +1,7 @@
-import axios from 'axios'
-import { useEffect } from 'react'
-import Header from './components/Header'
 import { GlobalStyle } from './styles/globalStyles'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './constants/theme'
-import Home from './components/Home'
+import Home from './Home'
 
 function App({countries, currentCountries}) {
 
