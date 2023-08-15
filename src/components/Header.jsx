@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { styled } from "styled-components"
 import { BsMoon, BsMoonFill } from 'react-icons/bs'
+
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false)
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
-
+    setDarkMode(!darkMode);
+  };
 
   return (
     <HeaderView>
@@ -19,7 +19,7 @@ const Header = () => {
         <div className='icon'
           onClick={toggleDarkMode}
         >
-          { darkMode ? (<BsMoonFill/>) : (<BsMoon/>) }
+          { darkMode ? (<BsMoon/>) : (<BsMoonFill/>) }
         </div>
 
         <p className='text'>
@@ -38,8 +38,9 @@ const HeaderView = styled.header`
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  background: white;
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
+  /* background: white; */
+  background: ${({theme, darkMode}) => darkMode ? theme.dark.color.background : theme.light.color.background };
+  box-shadow: 0 10px 15px -3px rgba(137, 137, 137, 0.1),0 4px 6px -4px rgba(141, 141, 141, 0.1);
 
   .title {
     padding: 0 2rem;
@@ -53,12 +54,13 @@ const HeaderView = styled.header`
     align-items: center;
 
     .icon {
-      padding: 0 1rem;
+      padding: 0.3rem 1rem;
+      margin: 0.2rem 0;
       cursor: pointer;
     }
 
     .text {
-      padding: 0 0.5rem;
+      padding: 0.3rem 1rem;
     }
   }
 `;
