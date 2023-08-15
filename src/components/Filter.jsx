@@ -17,16 +17,19 @@ const Filter = ({region, onRegionChange}) => {
 }
 
 const FilterView = styled.div`
+  width: 16%;
+
   .filter {
-    /* padding: 0.25rem 1rem; */
-    width: 10rem;
+    width: 100%;
     height: 4rem;
     border: none;
+    cursor: pointer;
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);
-    
   }
   option {
-    padding: 0.25rem;
+    margin-right: 0.25rem;
   }
 `;
 
