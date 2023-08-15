@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { styled } from "styled-components"
 
-const Paginator = ({currentPage, countriesPerPage, totalCountries, paginate}) => {
+const Paginator = ({currentPage, countriesPerPage, totalCountries, paginate, filteredCountries}) => {
   const pageNumbers = []
 
   // iterate over array and push pageNumbers
@@ -38,7 +38,7 @@ const Paginator = ({currentPage, countriesPerPage, totalCountries, paginate}) =>
         <PaginationList>{renderPages}</PaginationList>
         <PaginationItem>
           <PaginationLink
-            disabled={currentPage === countriesPerPage}
+            disabled={currentPage * countriesPerPage >= totalCountries}
             onClick={() => paginate(currentPage + 1)}
           >
             Next
