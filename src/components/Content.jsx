@@ -1,15 +1,53 @@
 import { styled } from "styled-components"
 import LoadingWrapper from "./LoadingWrapper";
+import { useEffect, useState } from "react";
+import Details from "./Details";
+import axios from "axios";
 
 const Content = ({countries, isLoading}) => {
+  const [showModal, setShowModal] = useState(false)
+  const [currentCountry, setCurrentCountry] = useState(null)
+  const [object, setObject] = useState({
+    isCurrent: false,
+    code: ''
+  })
+
+  const fetchCountryDetails = async (code) => {
+    try {
+      const response = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
+      console.log(response.data)
+      setCurrentCountry(response.data)
+      setShowModal(!showModal)
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
+
+  useEffect(() => {
+    if(object.isCurrent) {
+      fetchCountryDetails(object.code)
+    }
+  }, [object.code])
   
   return (
     <ContentView >
+      {showModal && (
+        <Details
+          currentCountry={currentCountry}
+          showModal={showModal}
+        />
+      )}
       <LoadingWrapper isLoading={isLoading}>
         <div className='countries'>
           {countries.map((country, index) => {
             return (
-              <div key={index} className='country-card'>
+              <div 
+                key={index} 
+                className='country-card'
+                onClick={() => {
+                  setObject({isCurrent: !object.isCurrent, code: country.cca3})
+                }}
+              >
                 <div className='img-container' height={'10rem'}>
                   <img src={country.flags.png} alt={country.flags.alt} className='image'/>
                 </div>
@@ -49,6 +87,7 @@ const ContentView = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3rem;
+    cursor: pointer;
   }
   
   .country-card {
@@ -83,20 +122,6 @@ const ContentView = styled.div`
       }
     }
   }
-  `;
+`;
 
 export default Content
-
-  // <div></div>
-
-  // <div>
-  //   
-
-  //   {/* <select name='filters' value={region} id="">
-  //     {countries.filter(country => {
-  //       return (
-  //         <option key={country.region} value={country.region}>{country.region}</option>
-  //       )
-  //     })}
-  //   </select> */}
-  // </div>
